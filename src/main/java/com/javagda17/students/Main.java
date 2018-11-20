@@ -17,7 +17,7 @@ public class Main {
 
 
         while (condition) {
-            System.out.println("Podaj wybor \r\n 'save' aby zapisac \r\n 'list' aby wypisac wszystkich uzytkownikow \r\n 'exit' aby zakonczyc");
+            System.out.println("Podaj wybor \r\n 'save' aby utworzyc nowego studenta \r\n 'list' aby wypisac wszystkich uzytkownikow \r\n 'exit' aby zakonczyc");
             pick = scanner.nextLine();
             switch (pick) {
                 case "save":

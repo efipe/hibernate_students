@@ -2,16 +2,13 @@ package com.javagda17.students;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //@Setter
 //@Getter
 //@ToString
 //@EqualsAndHashCode  - to wszystko mozna uniknac przez @Data
-@Data
+@Data// <---- hibernate
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,7 +22,12 @@ public class Student {
     private Long id;
 
     private String imie;
+
     private String nazwisko;
+
+    @Column(name = "indeks number", unique = true)
     private String indeks;
 
+
 }
+
