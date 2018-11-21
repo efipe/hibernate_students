@@ -5,6 +5,8 @@ import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -18,18 +20,30 @@ public class Main {
 
         while (condition) {
             System.out.println("Podaj wybor \r\n 'save' aby utworzyc nowego studenta \r\n 'list' aby wypisac wszystkich uzytkownikow \r\n 'exit' aby zakonczyc");
-            pick = scanner.nextLine();
+            pick = scanner.next();
             switch (pick) {
                 case "save":
                     System.out.println("Podaj imie");
-                    String name = scanner.nextLine();
+                    String name = scanner.next();
                     System.out.println("Podaj nazwisko");
-                    String surname = scanner.nextLine();
+                    String surname = scanner.next();
                     System.out.println("Podaj nr indeksu");
-                    String indeks = scanner.nextLine();
-                    Student student = new Student(null, name, surname, indeks);
-                    studentDAO.saveStudentsIntoDatabase(student);
-                    break;
+                    String indeks = scanner.next();
+                    // dodawanie ocen
+                    System.out.println("Podaj ilosc ocen");
+                    int iloscOcen = scanner.nextInt();
+                    List<Ocena> ocenaList = new ArrayList<>();
+                    for (int i = 0; i <iloscOcen; i++){
+                        //tutaj dochodzi do parsowania String-> ENUM(ocena)
+                        System.out.println("Podaj Nazwe przedmiotu");
+                        Przedmiot przedmiot = Przedmiot.valueOf(scanner.next());
+                        System.out.println("Podaj Ocene");
+                        int ocena = scanner.nextInt();
+                        ocenaList.add(new Ocena(null, ocena, przedmiot, null));
+                }
+                Student student = new Student(null, name, surname, indeks, ocenaList);
+                studentDAO.saveStudentsIntoDatabase(student);
+                break;
                 case "list":
                     studentDAO.getAllStudentsFromDatabase();
                     break;

@@ -11,14 +11,14 @@ import java.util.List;
 
 public class StudentDAO {
 
-    public boolean saveStudentsIntoDatabase(Student student) {
+    public boolean saveStudentsIntoDatabase(BaseEntity entity) {
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             // otwieramy
             transaction = session.beginTransaction();
-            session.save(student);
+            session.save(entity);
             transaction.commit();
 
         } catch (SessionException se) {
