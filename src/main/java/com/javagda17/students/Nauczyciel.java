@@ -3,27 +3,25 @@ package com.javagda17.students;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "student")
 
 
-public class Ocena extends BaseEntity {
+public class Nauczyciel extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    private Integer ocena;
-    @Enumerated(value = EnumType.STRING)
-    private Przedmiot przedmiot;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Student student;
+    private String imie;
+    private String nazwisko;
+    private double sredniaOcenaNauczyciela;
+    @ManyToMany
+    private List<Student> nauczaniStudenci;
 
 }

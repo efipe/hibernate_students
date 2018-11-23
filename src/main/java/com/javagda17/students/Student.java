@@ -27,8 +27,10 @@ public class Student extends BaseEntity {
     private String indeks;
 
     // this class object to many class objects
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private List<Ocena> oceny;
 
+    @ManyToMany(mappedBy = "nauczaniStudenci", fetch = FetchType.LAZY)
+    private List<Nauczyciel> nauczyciele;
 }
 
